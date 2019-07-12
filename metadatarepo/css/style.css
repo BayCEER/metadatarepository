@@ -1,0 +1,75 @@
+#filestable {
+	position: relative;
+	width: 100%;
+}
+
+#filestable.has-controls {
+	top: 44px;
+}
+
+/* make sure there's enough room for the file actions */
+#body-user #filestable {
+	min-width: 688px;
+	/* 768 (mobile break) - 80 (nav width) */
+}
+
+#body-user #controls {
+	min-width: 688px;
+	/* 768 (mobile break) - 80 (nav width) */
+}
+
+#filestable tbody tr {
+	background-color: #fff;
+	height: 51px;
+}
+#filestable tbody tr {
+	background-color: #fff;
+	height: 40px;
+}
+
+#filestable tbody tr.highlighted,
+#filestable tbody tr.highlighted .name:focus,
+#filestable tbody tr.searchresult,
+#filestable tbody tr.selected,
+#filestable tbody tr:active,
+#filestable tbody tr:focus,
+#filestable tbody tr:hover,
+table tr.mouseOver td {
+	background-color: #f8f8f8;
+}
+
+tbody a {
+	color: #000;
+}
+
+div.pagi {
+	float: left;
+	display: block;
+	height: 44px;
+}
+div.pagi span {
+	font-weight: bold;
+}
+div.pagi a,
+div.pagi span {
+	position: relative;
+	top: 12px;
+	padding: 14px 10px 14px 10px;
+	color: #555;
+}
+
+div.pagi a.ellipsislink {
+	padding: 0 !important;
+	position: relative;
+	top: 8px !important;
+}
+
+/* some feedback for hover/tap on paginations */
+div.pagi:hover,
+div.pagi:focus,
+div.pagi a:focus,
+div.pagi:active {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	opacity:.7;
+}
+
