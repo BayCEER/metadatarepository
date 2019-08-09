@@ -1,0 +1,27 @@
+{
+    "hashes": {
+        "appinfo\/app.php": "35eb0e5c9a8853fc7a80ae025d31894cb4f8d9a36652c5665b7d0460702c13df26e406dfb1e11c0afc57d69dfd8af27868460d2ccaef341e625c55daee248056",
+        "appinfo\/application.php": "3a523b22f0dfa38f04410a2fa43d48bfe22ef6225f8acbd7679c589b465a96df5adfcb0123b8df8d120f9487011095cb743337720d1a6642bef5ed4777933a3e",
+        "appinfo\/info.xml": "3aa0b6377da9908bb314c9823c66910f474cb7c5de07a0439012348c6ecd8b2d664332412ebb05052705453bc222698ffb2a32a87167cbf6174131a393fadab8",
+        "appinfo\/routes.php": "ac3be48aee22c474bcc465d8abfe5001fb897ac7a68d8cb8fb164897cd38cc8b7614040b4b8a318349baa8aaedfde777ea473ea451e1ffd6e633d425e01b65e4",
+        "css\/style.css": "bebccad6ba71ce3a3be4105c43600ee3ce9cf4d483c7c03cb5dce6d5561899e6605b3c01a638f2c76fd9ef15746689c996474a54ae2a5f1d140f9102c95e19fd",
+        "img\/metadatarepo-dark.svg": "52bd34381d3cd1712b633132405d5131cf4c181cd1294770add205c09c065e0bb9905771fdaa3e6035a97b3983e499807304ebe556eb88e68c314f6c953f3208",
+        "img\/metadatarepo.svg": "3022f43380995e6ed11a71b3444f178535bb541f7aaf4e80567bafe6f9b52920a2843937b4ae4a6a1717059f2901d6fabb1f10406c288a68381ac26e9c8e00b2",
+        "js\/metadatarepo.js": "7c6333480ff6e3e3cd80c4ca866f34a81436d7a9c4b3802bbcb2c50e56d78ea36e3234e8716f7b4afc14d0bd591906fff2b8a93e25eb0f642f0a1baecb91af26",
+        "js\/search.js": "1049d2bd9adff697f5e3150bb4755c40b4381b3547af17f0dfd83f2c1d802deb937b064b73f8b4eebe2cfdd4b621b47dda75a88d76014e1992884b7f80400c3a",
+        "js\/settings_admin.js": "ad7fdaf760545687f2b1dd71b8a5a60f19b644210bc4eb4bfbfb0fdb6a7698d87610d419d1319e797887ea3a71ce2b76bf6c49242d00653d7d1067ed134675eb",
+        "lib\/Backend.php": "b9fa22faa191be8006f27d8e9cc078932e6961750321935891daff11acd387fdea518da6b710a22e9523dbe48e8956730a245a7df6fd249eed853d979fd2c40f",
+        "lib\/Controller\/FileController.php": "ad0d92be1591277351042742b361222abcdb4b3b3da69721bde7ce6dbcbcf9ab874bebfab1a174bae51c393f859a5036cb7de303c08d9554d8c76fdc260ae765",
+        "lib\/Controller\/PageController.php": "e7efa967b7a3293bbaf007721d45e32458c46c8dd57de7bb4a932e11d8c8923bb40bedf5ee10a012c5b9ebac3c5e58e474115d89b274695783fd181bf32813ee",
+        "lib\/Controller\/SettingController.php": "c96a56befd0c82a0c0b9f24bcef7146f19e4a0d8ea4b9d36efa4d1603e82500a7ac59fbfde1d4475eaccd086b6347aacc93003d1322d0c7a058bb0bedd660a6b",
+        "lib\/Hooks.php": "fc99762717dd15038166582c7f1233d1ff3944ee27fdd5a8ca3ce861191563814ef4a44d376b637f885e1edcd99e968856a54b902882c511d2870d051e1d19f7",
+        "lib\/Settings\/Admin.php": "4f0625365384f729b6e1b3690e643ebe0c067bdfbabcc78bb6bfc7eab6511d55afdf5dfb38ef9016ea5fe160d251fe3a460c05dbec325e22c1205f7747f6dd04",
+        "lib\/Settings\/AdminSectionOC.php": "cf7340a098f18665e09c987d1b2ca667600fc3dee83b7607577c18b86e5baa4754648b8535c1becc1f9a4b452364795cd9f87263ce9e1cb01bafd8c95767e080",
+        "templates\/main.php": "48f01d18b36ef943dec8f1227fa3dd50400f103ddf9f5d2d322fdab9bd00041d12e4d7352267983df07abc3c4124426ff8bfd2bda03d8a5de814dba7980f0244",
+        "templates\/navi.php": "8bbb80f7b3f765e7ef3e6af2376ac46ed5b15d55e9943643bf517ff82c1e8195565d94248abc985f2fd0c7187fff73ae27f29ef1d79e974f428c123030d8374f",
+        "templates\/page.php": "1b60914a4a57669cbce5fa7d52f753a719adde5b6e7fa01b1c9c5904809e1c4522d6c7c2e41420bbb55d67587e22122ea3efeb367a326a5884096bb1ad777a15",
+        "templates\/settings.php": "ebc0549dfb3001fb1639291ed214c589e833f268529ffca0cca2a3da99c8b937b04662a1b2d9f1cee25819860413ca98de4ab88cbcbce8e534151d5542cba1ff"
+    },
+    "signature": "kklu0Hx\/Hx6idccGBhhVkSK3Xak+vb50\/Fx1ZVuAhNXL6BFWsNqrvPYJ1VWLkpZcLdAoxe+oLlIDQGckMeDEYO3zfKlGApAAPUYO8D1udOIwqudfg6lClSS5KSTjbRb9hhaqNv2FzU7NthWR0Wk7JFC8TUudASJxV\/Ojj+04Sl9ZmDz5S9bMgho3gy2\/2+pDjprqnJB+sGJ3ELipX60Ef8PEW7f9GJNk8CqE6H+7szD6Vo\/UfbRRPqN0rLcd9o0Y7zZI8QvFzf5ah\/Adk2IAgCiWlslKcqhX6eNqcvjUaYMzZCJiO4gsiou1G9WkzaQzXGhwxTfK0jdLpZayosNSaA==",
+    "certificate": "-----BEGIN CERTIFICATE-----\r\nMIID+TCCAeECAhBzMA0GCSqGSIb3DQEBCwUAMG0xCzAJBgNVBAYTAlVTMQ8wDQYD\r\nVQQIDAZCb3N0b24xFjAUBgNVBAoMDW93bkNsb3VkIEluYy4xNTAzBgNVBAMMLG93\r\nbkNsb3VkIENvZGUgU2lnbmluZyBJbnRlcm1lZGlhdGUgQXV0aG9yaXR5MB4XDTE5\r\nMDMyOTE1MTIyN1oXDTI5MDMyNjE1MTIyN1owFzEVMBMGA1UEAwwMbWV0YWRhdGFy\r\nZXBvMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1hnYzaBeQdjNh5zi\r\nh3pFCrt8h3IdDxeo5dbk6NEewcWiajcwUTnz8jwDh11ow807YHbv4R4zpnfjPEdX\r\nCICNjkzXT9\/Ranu5W8IHqdxzoj\/rHfECA1SSLNcrx3RYTUddVDPDVG0FVc1chPPn\r\nqTL4C\/zv08Ld72q5a2V0xdWgqVgFwHZXdbKFQCtYsihYUIRKMjrq7HsuVYHCtmfd\r\nJSNyb8LguPgPlP0C8GSM7uGnp5X3OnuphetC1sW\/6ZdEimGU75VtgWl\/iQzD0hzB\r\npZWRlMJiZlQAgazh5lJ+J7VZkLU\/bnAbFLOvNyl2ZOO5+8jedeFs07gcynghk5zA\r\nQ7T0oQIDAQABMA0GCSqGSIb3DQEBCwUAA4ICAQBnVDZgX8JMfyCkVOq6byzf5Q1u\r\nkpXLqZgqur3CvVthi9o\/WqYaP3T9+E4iAXg78LWZtEAb+aBToG5eKbbx4cAmnnNe\r\n+oGg3dG1f\/zMDXYh1GTFzKskt31wF4ynX7Yb\/Y4Om9WpD3+2W73GGBLcMs0GPxY6\r\nas3CSStydtUZXtjN6U\/JBgYFKatUT7fvQUCNO8YyBjQgCNrWJCEGja6YwxmxAyzC\r\nx9qynBKJaLdGRSstmFmfwjEgbj7RH5LlA3K7CVw3SW2R0w4FkkpwjdZBvdH6KXYu\r\nBAxTGPy9raXEPa6gsFJn3KU7JkH\/J0H6QtRUlHsq+3wGegOGEdaFzg8DnVn4nZ+4\r\n1wppnrmx05SrAQTtaNcbRCgnxrmBCrkbWUmAncBeISJC4G933PFclt9p2dw6kPPO\r\nNegkzVl6zOQ3bEVHRAefu\/mhDtaxuxsQftbXZ1fpErnpWP\/KBSKXcIMb8151QGwU\r\nES58j0vIG\/OrJrZj0INHyMEYRlfKRiDyuea6sQaXmBMwfrkYZUK+cMafBttqG5\/0\r\nK\/kPZfvMXiGpivsRA7SGgJyP6fSyTzCAuAuO2pRFIe6KGMGAW38TBAPm1cSU7qxK\r\nYT5HLY7KF1+ow9DOsSrE1y2suV\/ySRKP7imgXYrzNI4wwLbxk7TDUjJZnLXYAgNK\r\nEiLg1PNbs9x+P4p4Sg==\r\n-----END CERTIFICATE-----"
+}
