@@ -5,15 +5,14 @@
     <description>A Metadata Repository for OwnCloud based on lucene backend</description>
     <licence>AGPL</licence>
     <author>Stefan Holzheu, Oliver Archner</author>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 	<types>
 		<filesystem/>
 	</types>
     <namespace>MDRepo</namespace>
     <category>tool</category>
     <dependencies>
-        <owncloud min-version="9" />
-        <owncloud max-version="11" />
+        <owncloud min-version="9" max-version="11" />
     </dependencies>
 	<settings>
 		<admin>OCA\MDRepo\Settings\Admin</admin>
