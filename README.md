@@ -1,2 +1,2 @@
 # metadatarepository
-A metadatarepository app for ownCloud with lucene backend 
+A metadatarepository app for ownCloud with elasticsearch backend 
