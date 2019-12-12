@@ -5,26 +5,26 @@ use OC\Files\Filesystem;
 use OC\Files\View;
 use OCP\Files\NotFoundException;
 use OC\PreviewManager;
-define('LUCENE_URL', \OC::$server->getSystemConfig()->getValue('metadatarepo.lucene.url','http://localhost:5540/'));
-define('LUCENE_COLLECTION' , \OC::$server->getSystemConfig()->getValue('metadatarepo.lucene.collection','owncloud'));
+define('ELASTIC_SEARCH_URL', \OC::$server->getSystemConfig()->getValue('metadatarepo.elastic_search.url','http://localhost:5541/'));
+define('COLLECTION' , \OC::$server->getSystemConfig()->getValue('metadatarepo.elastic_search.collection','owncloud'));
 
 class Backend
 {
 
     public static function get($id)
     {
-        $json=file_get_contents(LUCENE_URL . 'index/' .LUCENE_COLLECTION.'/'. $id);
+        $json=file_get_contents(ELASTIC_SEARCH_URL . COLLECTION.'/index/'. $id);
         return json_decode($json, true);
     }
 
     public static function getThumbnail($id)
     {
-        return file_get_contents(LUCENE_URL . 'thumbnail/'.LUCENE_COLLECTION.'/' . $id);
+        return file_get_contents(ELASTIC_SEARCH_URL . COLLECTION.'/thumbnail/' . $id);
     }
 
     public static function getImage($id)
     {
-        return file_get_contents(LUCENE_URL . 'image/'.LUCENE_COLLECTION.'/'. $id);
+        return file_get_contents(ELASTIC_SEARCH_URL . COLLECTION.'/image/'. $id);
     }
 
     public static function write($path)
@@ -42,12 +42,13 @@ class Backend
             $content = str_replace("\r\n", "\n", $content);
             
             $json = json_encode(array(
-                'id' => $info->getId(),
+                'key' => $info->getId(),
                 'path' => $uid . '/' . $owner_path,
                 'content' => $content,
-                'lastModified' => $info->getMTime()
+                'lastModified' => $info->getMTime(),
+                'user' => \OC::$server->getUserSession()->getUser()->getDisplayName()
             ));
-            $req = curl_init(LUCENE_URL . 'index/' . LUCENE_COLLECTION );
+            $req = curl_init(ELASTIC_SEARCH_URL . COLLECTION . '/index/'.$info->getId());
             curl_setopt($req, CURLOPT_POST, 1);
             curl_setopt($req, CURLOPT_POSTFIELDS, $json);
             curl_setopt($req, CURLOPT_HTTPHEADER, array(
@@ -55,6 +56,7 @@ class Backend
                 'Content-Length: ' . strlen($json)
             ));
             $res = curl_exec($req);
+            
         } else {
     
             $endings=array('TXT','txt','Txt','TXt','txT','tXt','tXT','TxT');
@@ -75,7 +77,7 @@ class Backend
             $preview = $previewManager->createPreview('files/' . $path, 1024,1024);
             if ($preview->valid()) {
                 $data=$preview->data();
-                $req = curl_init(LUCENE_URL . 'image/' .LUCENE_COLLECTION.'/'. $info_txt->getId());
+                $req = curl_init(ELASTIC_SEARCH_URL .COLLECTION. '/image/'. $info_txt->getId());
                 curl_setopt($req, CURLOPT_POST, 1);
                 curl_setopt($req, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($req, CURLOPT_HTTPHEADER, array(
@@ -89,7 +91,7 @@ class Backend
             $preview = $previewManager->createPreview('files/' . $path, 100, 100);
             if ($preview->valid()) {
                 $data=$preview->data();
-                $req = curl_init(LUCENE_URL . 'thumbnail/' .LUCENE_COLLECTION.'/'. $info_txt->getId());
+                $req = curl_init(ELASTIC_SEARCH_URL  .COLLECTION. '/thumbnail/'. $info_txt->getId());
                 curl_setopt($req, CURLOPT_POST, 1);
                 curl_setopt($req, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($req, CURLOPT_HTTPHEADER, array(
@@ -114,7 +116,7 @@ class Backend
         if (preg_match('/\\.txt$/i', $info->getName())) {
             // TXT-File
             $req = curl_init();
-            curl_setopt($req, CURLOPT_URL, LUCENE_URL . 'index/' .LUCENE_COLLECTION.'/' . $info->getId());
+            curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/index/' . $info->getId());
             curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
             $res = curl_exec($req);
         } else {
@@ -134,11 +136,11 @@ class Backend
                 return;
             }
             $req = curl_init();
-            curl_setopt($req, CURLOPT_URL, LUCENE_URL . 'image/' .LUCENE_COLLECTION.'/' . $info_txt->getId());
+            curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/image/' . $info_txt->getId());
             curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
             $res = curl_exec($req);
             $req = curl_init();
-            curl_setopt($req, CURLOPT_URL, LUCENE_URL . 'thumbnail/' .LUCENE_COLLECTION.'/' . $info_txt->getId());
+            curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/thumbnail/'. $info_txt->getId());
             curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
             $res = curl_exec($req);
         }
@@ -185,10 +187,31 @@ class Backend
         ];
     }
 
-    public static function search($search, $offset = 0, $hitsPerPage = 20)
+    public static function search($search, $fields, $filter, $offset = 0, $hitsPerPage = 20, $fragmentSize=100)
     {
-        $json = file_get_contents(LUCENE_URL . 'index/' .LUCENE_COLLECTION.'?query=' . urlencode($search) . '&start=' . $offset . '&hitsPerPage=' . $hitsPerPage);
+        if(! $filter) $filter=json_decode("{}");
+        $json = file_get_contents(ELASTIC_SEARCH_URL  .COLLECTION. '/index?query=' . urlencode($search) . 
+            '&start=' . $offset . '&hitsPerPage=' . $hitsPerPage . '&fragmentSize=' . $fragmentSize .
+            '&fields='. urlencode(json_encode($fields)) .
+            '&filter='. urlencode(json_encode($filter))
+            );
         
         return json_decode($json, true);
     }
+    
+    public static function getFieldNames()
+    {
+        $json = file_get_contents(ELASTIC_SEARCH_URL  .COLLECTION. '/field/names?sysFields=true');
+        return json_decode($json, true);
+    }
+    
+    public static function terms($search, $filter, $maxHits=10){
+        if(! $filter) $filter=json_decode("{}");
+        $json = file_get_contents(ELASTIC_SEARCH_URL  .COLLECTION. '/terms?query=' . urlencode($search) .
+            '&filter='. urlencode(json_encode($filter)). '&maxHits=' .$maxHits . '&fragmentSize=30'
+            );
+        
+        return json_decode($json, true);
+    }
+    
 }

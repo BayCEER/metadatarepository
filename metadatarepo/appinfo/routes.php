@@ -13,10 +13,13 @@ $application->registerRoutes($this, [
             // Only accessible with GET requests
             'verb' => 'GET'
         ],
-        ['name' => 'page#show', 'url'=>'page/{id}', 'verb' =>'GET'],
-        ['name' => 'page#thumbnail', 'url'=>'thumbnail/{id}', 'verb' =>'GET'],
-        ['name' => 'page#image', 'url'=>'image/{id}', 'verb' =>'GET'],
+        ['name' => 'page#thumbnail', 'url'=>'/thumbnail/{id}', 'verb' =>'GET'],
+        ['name' => 'page#image', 'url'=>'/image/{id}', 'verb' =>'GET'],
         ['name' => 'setting#admin', 'url' => '/admin', 'verb' => 'POST'],
         ['name' => 'file#fill', 'url' => '/fill', 'verb' => 'POST'],
+        ['name' => 'query#index', 'url' => '/query', 'verb' => 'GET'],
+        ['name' => 'query#fields', 'url' => '/query/fields', 'verb' => 'GET'],
+        ['name' => 'query#words', 'url'=>'/query/words', 'verb' =>'GET'],
+        ['name' => 'query#show', 'url'=>'/query/{id}', 'verb' =>'GET'],
     ]
 ]);

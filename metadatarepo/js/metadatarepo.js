@@ -40,19 +40,22 @@ MDRepo.NewFileMenuPlugin = {
 						data: {
 							dir: dir,
 							filename: name
+						},
+						success: function(){
+							OCA.Files_Texteditor.loadFile(dir,name,function(){},function(){});
+							// once the file got successfully created,
+							// open the editor
+							OCA.Files_Texteditor._onEditorTrigger(
+									name,
+									{
+										fileList: fileList,
+										dir: dir
+									}
+							);
 						}
 					});
 								
-					OCA.Files_Texteditor.loadFile(dir,name,function(){},function(){});
-					// once the file got successfully created,
-					// open the editor
-					OCA.Files_Texteditor._onEditorTrigger(
-						name,
-						{
-							fileList: fileList,
-							dir: dir
-						}
-					);
+					
 				});
 			}
 		});
