@@ -72,7 +72,9 @@ $(document).ready(function() {
 		for(var i=0;i<childs.length;i++){
 			$("#agg_childs_"+key).append('<a class="agg_filter" data-key="'+key+'" data-value="'+childs[i].key+'">'+
 					childs[i].key+' ('+childs[i].count+')</a><br/>');
-		}	
+		}
+		$(".agg_filter").unbind('click');
+	
 		$('.agg_filter').click(function(){
 			key=$(this).attr('data-key')
 			value=$(this).attr('data-value')
@@ -82,9 +84,10 @@ $(document).ready(function() {
 			if(! filter[key].includes(value))
 				filter[key].push(value)
 			else {
-			//	filter[key].remove(value)
-			//	if(! filter[key].length) delete(filter[key])
+				filter[key].remove(value)
+				if(! filter[key].length) delete(filter[key])
 			}
+			
 			fill_filter()
 			es_search()
 			
@@ -152,11 +155,11 @@ $(document).ready(function() {
 			r.append('<td></td>');
 			td=r.find("td").last()
 			for(var key in this.previews){
-				td.append("<b>"+key+":</b> ")
+				if(this.previews[key].length) td.append("<b>"+key+":</b> ")
 				for(var i=0;i<this.previews[key].length;i++){
 					td.append(this.previews[key][i]+' ');
 				}
-				td.append("<br/>")
+				if(this.previews[key].length) td.append("<br/>")
 			}
 			r.append('<td></td>');
 			td=r.find("td").last()
