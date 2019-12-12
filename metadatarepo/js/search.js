@@ -151,10 +151,12 @@ $(document).ready(function() {
 			}
 			r.append('<td></td>');
 			td=r.find("td").last()
-			
-			for(var i=0;i<this.previews.length;i++){
-				p=this.previews[i];
-				td.append(format_content(p+'<br/>'));
+			for(var key in this.previews){
+				td.append("<b>"+key+":</b> ")
+				for(var i=0;i<this.previews[key].length;i++){
+					td.append(this.previews[key][i]+' ');
+				}
+				td.append("<br/>")
 			}
 			r.append('<td></td>');
 			td=r.find("td").last()
