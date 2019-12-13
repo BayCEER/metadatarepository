@@ -45,7 +45,7 @@ $(document).ready(function () {
             },
             success: function (data) {
             	$.each(data,function(){ 
-            		key=this.replace(/[: ]/g,'_')
+            		key=this.replace(/[: <>;,]/g,'_')
             		$("#field_"+key).prop("checked",key);
             	})
                 //set up onChange handler
