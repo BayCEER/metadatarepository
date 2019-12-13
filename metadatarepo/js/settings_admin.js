@@ -44,8 +44,9 @@ $(document).ready(function () {
             	'selected':1
             },
             success: function (data) {
-            	$.each(data,function(){
-            		$("#field_"+this).prop("checked",true);
+            	$.each(data,function(){ 
+            		key=this.replace(/[: ]/g,'_')
+            		$("#field_"+key).prop("checked",key);
             	})
                 //set up onChange handler
             	set_field_onchange();
@@ -61,9 +62,11 @@ $(document).ready(function () {
         data: {
         },
         success: function (data) {
-        	$.each(data,function(){
-        		$("#search_fields").append('<input type="checkbox" value="'+this+'" id="field_'+this+'"><label for="field_'+this+'">'+
-        				this+'</label><br/>');
+        	$.each(data,function(){		
+        		key=this.replace(/[: ]/g,'_')
+
+        		$("#search_fields").append('<input type="checkbox" value="'+key+'" id="field_'+key+'"><label for="field_'+key+'">'+
+        				key+'</label><br/>');
         	});
             //Load selected fields
         	load_selected_fields();
