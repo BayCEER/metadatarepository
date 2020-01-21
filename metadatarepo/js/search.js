@@ -38,7 +38,7 @@ $(document).ready(function() {
 	//Function for creating the initial field tree. Childs are closed
 	function create_fields(data){
 		$.each(data, function(){
-			$("#agg-fields-ul").append('<li class="nav-files active">'+
+			$("#agg-fields-ul").append('<li class="nav-files">'+
 					'<a class="agg_field icon-triangle-s svg" id="agg_field_'+this+'">'
     				+this+'</a><div class="agg_childs" id="agg_childs_'+this+'"></div></li>');
 			fields.push(this);
@@ -150,6 +150,9 @@ $(document).ready(function() {
 				r.append('<td><a title="go to directory" class="icon-toggle svg" href="../files/?fileid='+this.key+
 						'" style="display: block;">&nbsp;</a></td>'+
 						'<td>'+this.path+'</td>');
+			} else if(this.deleted){
+				r.append('<td class="icon-delete svg"></td><td>'+this.path+'</td>');
+				
 			} else {
 				r.append('<td class="icon-password svg"></td><td>'+this.path+'</td>');
 			}

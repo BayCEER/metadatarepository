@@ -34,7 +34,7 @@ class Backend
         if (preg_match('/\\.txt$/i', $info->getName())) {
             $content = $ownerView->file_get_contents($owner_path);
             $encoding = mb_detect_encoding($content . "a", "UTF-8, WINDOWS-1252, ISO-8859-15, ISO-8859-1, ASCII", true);
-            if ($encoding == "") {
+            if ($encoding === false) {
                 // set default encoding if it couldn't be detected
                 $encoding = 'ISO-8859-15';
             }
@@ -110,6 +110,27 @@ class Backend
             \OCP\Util::writeLog("metadatarepo", $message . " ERROR", \OCP\Util::ERROR);
     }
 
+    public static function deleteById($id){
+        $req = curl_init();
+        curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/image/' . $id);
+        curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
+        $res = curl_exec($req);
+        $req = curl_init();
+        curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/thumbnail/'. $id);
+        curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
+        $res = curl_exec($req);
+        $req = curl_init();
+        curl_setopt($req, CURLOPT_URL, ELASTIC_SEARCH_URL  .COLLECTION.'/index/' . $id);
+        curl_setopt($req, CURLOPT_CUSTOMREQUEST, "DELETE");
+        $res = curl_exec($req);
+        $message = "delete ID:$id";
+        if ($res)
+            \OCP\Util::writeLog("metadatarepo", $message . " SUCCESS", \OCP\Util::INFO);
+        else
+            \OCP\Util::writeLog("metadatarepo", $message . " ERROR", \OCP\Util::ERROR);
+                
+    }
+    
     public static function delete($path, $oldpath = '')
     {
         list ($uid, $path, $info) = self::getFileInfo($path);
@@ -156,7 +177,6 @@ class Backend
         $uid = Filesystem::getOwner($filename);
         $userManager = \OC::$server->getUserManager();
         $info = Filesystem::getFileInfo($filename);
-        
         // \OCP\Util::writeLog("metadatarepo","Mimetype: ".$info->getMimetype(),2);
         // if the user with the UID doesn't exists, e.g. because the UID points
         // to a remote user with a federated cloud ID we use the current logged-in
@@ -176,8 +196,8 @@ class Backend
                 // make sure that the file name doesn't end with a trailing slash
                 // can for example happen single files shared across servers
                 $filename = \rtrim($filename, '/');
-            } catch (NotFoundException $e) {
-                $filename = null;
+            }  catch (NotFoundException $e) {
+               $filename = null;
             }
         }
         return [
@@ -195,6 +215,7 @@ class Backend
             '&fields='. urlencode(json_encode($fields)) .
             '&filter='. urlencode(json_encode($filter))
             );
+        \OCP\Util::writeLog('metadatarepo', "Backend::search: $search - ".json_encode($fields), \OCP\Util::DEBUG);
         
         return json_decode($json, true);
     }

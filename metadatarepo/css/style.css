@@ -41,7 +41,10 @@
 }
 #filestable {
 	position: relative;
-	width: 100%;
+	width: 100%;   
+	white-space: wrap;
+}
+
 }
 #filestable th {
 	padding: 5px;

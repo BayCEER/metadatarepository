@@ -9,11 +9,11 @@ use OCA\MDRepo\Backend;
 use OCP\Files\NotFoundException;
 use OC\Files\View;
 
-
 class QueryController extends Controller {
     
     private $config;
     private $view;
+    private $view_trash;
     
     public function __construct($appName, IRequest $request, IConfig $config)
     {
@@ -21,6 +21,7 @@ class QueryController extends Controller {
         $this->config = $config;
         $uid = \OC::$server->getUserSession()->getUser()->getUID();
         $this->view = new View('/'.$uid.'/files');
+        $this->view_trash = new View('/'.$uid.'/files_trashbin');
     }
     
     /**
@@ -33,6 +34,7 @@ class QueryController extends Controller {
         
         for ($i = 0; $i < count($res['hits']); $i ++) {
             $res['hits'][$i]['readable']=false;
+            $res['hits'][$i]['deleted']=false;
             $res['hits'][$i]['private']=(preg_match('/ReadmeDC\\.private\\.txt$/i', $res['hits'][$i]['path'])?true:false);
             try {
                 $filename = $this->view->getPath($res['hits'][$i]['key']);
@@ -41,10 +43,16 @@ class QueryController extends Controller {
                 $res['hits'][$i]['path'] = \rtrim($filename, '/');
                 $res['hits'][$i]['readable'] = true;
             } catch (NotFoundException $e) {
-                $res['hits'][$i]['readable'] = false;
+                try {
+                    $filename = $this->view_trash->getPath($res['hits'][$i]['key']);
+                    $res['hits'][$i]['path'] = 'trashbin:'.\rtrim($filename, '/');
+                    $res['hits'][$i]['deleted'] = true;
+                    
+                } catch (NotFoundException $e){
+                    $res['hits'][$i]['readable'] = false;
+                }
             }
         }
-        \OCP\Util::writeLog('metadatarepo', 'fields: '.$this->request->{'fields'}, \OCP\Util::ERROR);
         
         return new JSONResponse($res);
     }
