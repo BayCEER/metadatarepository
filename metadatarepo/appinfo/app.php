@@ -22,9 +22,10 @@ namespace OCA\metadatarepo;
     ];
 });
 
-
+    
 \OCA\MDRepo\Hooks::connectHooks();
 $app = new \OCP\AppFramework\App('metadatarepo');
+
 
 if (\OCP\User::isLoggedIn()) {
     $eventDispatcher = \OC::$server->getEventDispatcher();

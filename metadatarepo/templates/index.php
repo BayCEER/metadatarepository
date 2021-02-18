@@ -1,7 +1,7 @@
 <?php 
 style('metadatarepo', 'style');  // adds css/style.css
-style('metadatarepo', 'simplePagination');  // adds css/style.css
-script('metadatarepo', 'jquery.simplePagination');  // adds js/search.js
+style('metadatarepo', 'simplePagination');  // adds css/simplePagination.css
+script('metadatarepo', 'jquery.simplePagination');  // adds js/simplePagination.js
 script('metadatarepo', 'search');  // adds js/search.js
 ?>
 <div id="app">
@@ -30,7 +30,7 @@ script('metadatarepo', 'search');  // adds js/search.js
 
 <div id="search-results" style="padding-top:50px">
 <div class="pagination"></div>
-<table id="filestable">
+<table id="resultstable">
 <thead>
 <tr><th>Data access</th><th>Path</th><th>Preview</th><th>Thumbnail</th><th>Score</th></tr>
 </thead>

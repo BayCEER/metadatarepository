@@ -67,7 +67,7 @@ $(document).ready(function() {
 	
 	//Function for filling the field-tree after successful search
 	function fill_field(key,title,childs){
-		key=key.replace(/[: <>;,]/g,'_')
+		key=key.replace(/[: <>;,]"'/g,'_')
 		$("#agg_field_"+key).html(title);
 		$("#agg_childs_"+key).html("");
 		for(var i=0;i<childs.length;i++){

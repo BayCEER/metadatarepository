@@ -63,7 +63,8 @@ $(document).ready(function () {
         },
         success: function (data) {
         	$.each(data,function(){		
-        		key=this.replace(/[: ]/g,'_')
+        		//key=this.replace(/[: ]/g,'_')
+        		key=this.replace(/[: <>;,]"'/g,'_')
 
         		$("#search_fields").append('<input type="checkbox" value="'+key+'" id="field_'+key+'"><label for="field_'+key+'">'+
         				key+'</label><br/>');

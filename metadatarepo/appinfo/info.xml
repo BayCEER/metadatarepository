@@ -5,7 +5,7 @@
     <description>A Metadata Repository for OwnCloud based on lucene backend</description>
     <licence>AGPL</licence>
     <author>Stefan Holzheu, Oliver Archner</author>
-    <version>0.1.6</version>
+    <version>0.1.7</version>
 	<types>
 		<filesystem/>
 	</types>
@@ -14,14 +14,14 @@
     <dependencies>
         <owncloud min-version="9" max-version="11" />
     </dependencies>
-	<settings>
-		<admin>OCA\MDRepo\Settings\Admin</admin>
-	</settings>
-	<settings-sections>
-		<admin>OCA\MDRepo\Settings\AdminSectionOC</admin>
-	</settings-sections>
 	<background-jobs>
         <job>OCA\MDRepo\BackgroundJob\RemoveDeleted</job>
 	</background-jobs>
-    
+	<settings>
+		<admin>OCA\MDRepo\Settings\Admin</admin>
+	</settings>
+ 	<settings-sections>
+		<admin>OCA\MDRepo\Settings\AdminSectionOC</admin>
+	</settings-sections>
+ 
 </info>

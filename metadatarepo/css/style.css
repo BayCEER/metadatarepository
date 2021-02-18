@@ -39,26 +39,26 @@
   text-align: left;
   padding: 10px;
 }
-#filestable {
+
+#resultstable {
 	position: relative;
 	width: 100%;   
-	white-space: wrap;
 }
 
-}
-#filestable th {
+
+#resultstable th {
 	padding: 5px;
 	text-align: left;
 	font-weight: bold;
-	background-color: #eee
+	background-color: #eee;
 }
 
-#filestable.has-controls {
+#resultstable.has-controls {
 	top: 44px;
 }
 
 /* make sure there's enough room for the file actions */
-#body-user #filestable {
+#body-user #resultstable {
 	min-width: 688px;
 	/* 768 (mobile break) - 80 (nav width) */
 }
@@ -68,22 +68,19 @@
 	/* 768 (mobile break) - 80 (nav width) */
 }
 
-#filestable tbody tr {
-	background-color: #fff;
-	height: 51px;
-}
-#filestable tbody tr {
+#resultstable tbody tr {
 	background-color: #fff;
 	height: 40px;
+	white-space: normal;
 }
 
-#filestable tbody tr.highlighted,
-#filestable tbody tr.highlighted .name:focus,
-#filestable tbody tr.searchresult,
-#filestable tbody tr.selected,
-#filestable tbody tr:active,
-#filestable tbody tr:focus,
-#filestable tbody tr:hover,
+#resultstable tbody tr.highlighted,
+#resultstable tbody tr.highlighted .name:focus,
+#resultstable tbody tr.searchresult,
+#resultstable tbody tr.selected,
+#resultstable tbody tr:active,
+#resultstable tbody tr:focus,
+#resultstable tbody tr:hover,
 table tr.mouseOver td {
 	background-color: #f8f8f8;
 }
