@@ -45,7 +45,7 @@ $(document).ready(function () {
             },
             success: function (data) {
             	$.each(data,function(){ 
-            		key=this.replace(/[: <>;,]/g,'_')
+            		key=this.replace(/[\W]/g,'_')
             		$("#field_"+key).prop("checked",key);
             	})
                 //set up onChange handler
@@ -64,7 +64,7 @@ $(document).ready(function () {
         success: function (data) {
         	$.each(data,function(){		
         		//key=this.replace(/[: ]/g,'_')
-        		key=this.replace(/[: <>;,"']/g,'_')
+        		key=this.replace(/[\W]/g,'_')
 
         		$("#search_fields").append('<input type="checkbox" value="'+key+'" id="field_'+key+'"><label for="field_'+key+'">'+
         				key+'</label><br/>');
